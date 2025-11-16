@@ -58,7 +58,7 @@ void scanBTdevice() {//scan bluetooth device
     delay(100)  ;
 
     if (deviceName[i] == client_name) {//match name.
-    //found device name "OBDII"
+    //found device name matching client_name
       foundOBD2 = true;
       //00:1d:a5:00:12:92 -> {0x00,0x1d,0xa5,0x00,0x12,0x92};
       //copy match bt mac address to client_name to connect

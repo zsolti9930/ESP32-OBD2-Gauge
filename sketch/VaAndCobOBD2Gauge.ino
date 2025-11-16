@@ -175,8 +175,8 @@ uint8_t btDeviceCount = 0;                                                  //di
 #define BT_DISCOVER_TIME 5000                                               //bluetooth discoery time
 esp_bd_addr_t client_addr = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };         //obdII mac addr
 esp_bd_addr_t recent_client_addr = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };  //keep last btaddr in RTC memory
-const String client_name = "OBDII";                                         //adaptor name to search
-esp_spp_sec_t sec_mask = ESP_SPP_SEC_NONE;                                  // or ESP_SPP_SEC_ENCRYPT|ESP_SPP_SEC_AUTHENTICATE to request pincode confirmation
+const String client_name = "vLinker FD-Android";                            //adaptor name to search
+esp_spp_sec_t sec_mask = ESP_SPP_SEC_ENCRYPT | ESP_SPP_SEC_AUTHENTICATE;    // Enable pincode authentication for vLinker FD-Android
 esp_spp_role_t role = ESP_SPP_ROLE_SLAVE;                                   // or ESP_SPP_ROLE_MASTER
 bool foundOBD2 = false;
 BluetoothSerial BTSerial;  //bluetooth serial device
@@ -371,6 +371,7 @@ recent_client_addr : {0x00,0x00,0x00,0x00,0x00,0x00} array of bytes[6]
     Terminal("Bluetooth..error!", 0, 48, 320, 191);
     abort();
   } else {
+    BTSerial.setPin("1234");  // Set PIN code for vLinker FD-Android
     Serial.println(F("Bluetooth..OK"));
     Terminal("Bluetooth..OK", 0, 48, 320, 191);
   }
